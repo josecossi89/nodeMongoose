@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const dbConnect = require("./config/mongo.js");
 const app = express();
 
 app.use(cors());
@@ -11,3 +12,5 @@ const db = process.env.DB;
 app.listen(port, () => {
   console.log(`Listening in port ${port}`);
 });
+
+dbConnect();

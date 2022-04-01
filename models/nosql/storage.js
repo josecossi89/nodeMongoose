@@ -15,4 +15,4 @@ const StorageSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.Schema("storage", StorageSchema);
+module.exports = mongoose.Schema("storages", StorageSchema);

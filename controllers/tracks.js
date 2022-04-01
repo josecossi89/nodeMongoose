@@ -1,13 +1,14 @@
+const { tracksModel } = require("../models");
 /**
  * Obtener todos los registros de la base de datos
  * @param {*} req
  * @param {*} res
  */
-const getItems = (req, res) => {
+const getItems = async (req, res) => {
   try {
-    const data = ["Hola", "Mundo"];
-    res.send({ data });
-    console.log(`Hola Soy un track`);
+    const data = await tracksModel.find({});
+    console.log(`Corrected`);
+    res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ message: `Error in line` });
   }

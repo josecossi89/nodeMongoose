@@ -3,7 +3,15 @@
  * @param {*} req
  * @param {*} res
  */
-const getItems = (req, res) => {};
+const getItems = (req, res) => {
+  try {
+    const data = ["Hola", "Mundo"];
+    res.send({ data });
+    console.log(`Hola Soy un track`);
+  } catch (error) {
+    res.status(500).json({ message: `Error in line` });
+  }
+};
 
 /**
  * Obtener un detalle en particular de algun registro en la base de datos
@@ -17,7 +25,7 @@ const getItem = (req, res) => {};
  * @param {*} req
  * @param {*} res
  */
-const createItems = (req, res) => {};
+const createItem = (req, res) => {};
 
 /**
  * Actualizar un registro en la base de datos
@@ -33,4 +41,4 @@ const updateItems = (req, res) => {};
  */
 const deleteItems = (req, res) => {};
 
-module.exports = { getItems, getItem, createItems, deleteItems, updateItems };
+module.exports = { getItems, getItem, createItem, deleteItems, updateItems };

@@ -27,10 +27,15 @@ const getItem = (req, res) => {};
  * @param {*} res
  */
 const createItem = async (req, res) => {
-  const { body } = req;
-  console.log(body);
-  const data = await tracksModel.create(body);
-  res.send({ data });
+  try {
+    const { body } = req;
+    console.log(body);
+    const data = await tracksModel.create(body);
+    res.send({ data });
+  } catch (err) {
+    res.status(403);
+    res.send({ error: err.array() });
+  }
 };
 
 /**

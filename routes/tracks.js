@@ -1,4 +1,5 @@
 const express = require("express");
+const { validatorCreateItem } = require("../validators/tracks");
 const {
   getItems,
   getItem,
@@ -10,7 +11,7 @@ const {
 const router = express.Router();
 
 router.get("/", getItems);
-router.post("/", createItem);
+router.post("/", validatorCreateItem, createItem);
 router.get("/:id", getItem);
 router.put("/:id", updateItems);
 router.delete("/:id", deleteItems);

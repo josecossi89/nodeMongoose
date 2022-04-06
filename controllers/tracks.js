@@ -1,4 +1,5 @@
 const { tracksModel } = require("../models");
+const { handleHttpError } = require("../utils/handleError");
 /**
  * Obtener todos los registros de la base de datos
  * @param {*} req
@@ -8,18 +9,11 @@ const getItems = async (req, res) => {
   try {
     const data = await tracksModel.find({});
     console.log(`Corrected`);
-    res.status(200).json({ data });
+    res.status(201).json({ data });
   } catch (error) {
-    res.status(500).json({ message: `Error in line` });
+    handleHttpError(res, `ERROR_GET_ITEMS`, 404);
   }
 };
-
-/**
- * Obtener un detalle en particular de algun registro en la base de datos
- * @param {*} req
- * @param {*} res
- */
-const getItem = (req, res) => {};
 
 /**
  * Crear un nuevo registro en la base de datos
@@ -29,12 +23,21 @@ const getItem = (req, res) => {};
 const createItem = async (req, res) => {
   try {
     const { body } = req;
-    console.log(body);
     const data = await tracksModel.create(body);
     res.send({ data });
   } catch (err) {
-    res.status(403);
-    res.send({ error: err.array() });
+    handleHttpError(res, `ERROR_CREATE_ITEMS`, 403);
+  }
+};
+/**
+ * Obtener un detalle en particular de algun registro en la base de datos
+ * @param {*} req
+ * @param {*} res
+ */
+const getItem = (req, res) => {
+  try {
+  } catch (error) {
+    handleHttpError(res, `ERROR_GET_ITEM`, 500);
   }
 };
 

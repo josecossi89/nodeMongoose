@@ -7,11 +7,11 @@ const {
   updateItems,
   deleteItems,
 } = require("../controllers/tracks");
-
+const customHeader = require("../middlewares/customHeader");
 const router = express.Router();
 
 router.get("/", getItems);
-router.post("/", validatorCreateItem, createItem);
+router.post("/", validatorCreateItem, customHeader, createItem);
 router.get("/:id", getItem);
 router.put("/:id", updateItems);
 router.delete("/:id", deleteItems);

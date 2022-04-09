@@ -7,8 +7,8 @@ const {
   getItems,
   getItem,
   createItem,
-  updateItems,
-  deleteItems,
+  updateItem,
+  deleteItem,
 } = require("../controllers/tracks");
 const customHeader = require("../middlewares/customHeader");
 const router = express.Router();
@@ -28,10 +28,10 @@ router.get("/:id", validatorGetItem, getItem);
 /**
  * Actualizar un registro existente en particular
  */
-router.put("/:id", updateItems);
+router.put("/:id", validatorGetItem, validatorCreateItem, updateItem);
 /**
  * Eliminar un registro existente en particular
  */
-router.delete("/:id", deleteItems);
+router.delete("/:id", validatorGetItem, deleteItem);
 
 module.exports = router;

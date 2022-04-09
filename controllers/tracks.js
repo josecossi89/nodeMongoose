@@ -51,13 +51,29 @@ const getItem = async (req, res) => {
  * @param {*} req
  * @param {*} res
  */
-const updateItems = async (req, res) => {};
+const updateItem = async (req, res) => {
+  try {
+    const { id, ...body } = matchedData(req);
+    const data = await tracksModel.findOneAndUpdate(id, body);
+    res.send({ data });
+  } catch (err) {
+    handleHttpError(res, `ERROR_UPDATE_ITEM`, 403);
+  }
+};
 
 /**
  * Eliminar un registro de la base de datos
  * @param {*} req
  * @param {*} res
  */
-const deleteItems = async (req, res) => {};
+const deleteItem = async (req, res) => {
+  try {
+    const { id } = matchedData(req);
+    const data = await tracksModel.deleteOne({ _id: id });
+    res.send({ message: `${id} delete successfull` });
+  } catch (err) {
+    handleHttpError(res, `ERROR_DELETE_ITEM`, 403);
+  }
+};
 
-module.exports = { getItems, getItem, createItem, deleteItems, updateItems };
+module.exports = { getItems, getItem, createItem, deleteItem, updateItem };

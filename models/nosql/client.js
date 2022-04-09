@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const mongooseDelete = require("mongoose-delete");
 const ClientScheme = new mongoose.Schema(
   {
     name: {
@@ -11,5 +11,5 @@ const ClientScheme = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
+ClientScheme.plugin(mongooseDelete, { overrideMethods: "all" });
 module.exports = mongoose.model("client", ClientScheme);

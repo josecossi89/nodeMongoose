@@ -12,6 +12,7 @@ const getItems = async (req, res) => {
     const data = await tracksModel.find({});
     res.status(201).json({ data });
   } catch (error) {
+    console.log(error);
     handleHttpError(res, `ERROR_GET_ITEMS`, 404);
   }
 };
